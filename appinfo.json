@@ -1,0 +1,37 @@
+{
+    "appKeys": {},
+    "capabilities": [
+        ""
+    ],
+    "companyName": "wowthatisrandom",
+    "longName": "Pebble Torch",
+    "projectType": "native",
+    "resources": {
+        "media": [
+            {
+                "file": "images/torch_icon.png",
+                "menuIcon": true,
+                "name": "IMAGE_TORCH_ICON",
+                "type": "png"
+            },
+            {
+                "file": "images/pow.png",
+                "name": "IMAGE_POW",
+                "type": "png"
+            },
+            {
+                "file": "images/pow_black.png",
+                "name": "IMAGE_POW_BLACK",
+                "type": "png"
+            }
+        ]
+    },
+    "sdkVersion": "2",
+    "shortName": "Pebble Torch",
+    "uuid": "3ac97e09-2035-4003-85fb-b4d4f176248b",
+    "versionCode": 1,
+    "versionLabel": "1.2.1",
+    "watchapp": {
+        "watchface": false
+    }
+}
