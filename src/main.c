@@ -21,7 +21,10 @@ static void deinit(void) {
 }
  
 static void window_load(Window *window){
-    window_set_background_color(window, GColorWhite);
+	#ifdef PBL_SDK_2
+    	window_set_background_color(window, GColorWhite);
+	#endif
+
     light_enable(true);
     is_light_on = true;
     is_bg_white = true;
@@ -125,24 +128,40 @@ static void init(void) {
 	accel_tap_service_subscribe(handle_accel);
 	battery_state_service_subscribe(handle_battery);
 	window_set_click_config_provider(my_window,(ClickConfigProvider) config_provider);
-    window_set_fullscreen(my_window, true);
+	
+	#ifdef PBL_SDK_2
+    	window_set_fullscreen(my_window, true);
+	#endif
+
     window_stack_push(my_window, true);  
     toggle_light();
        
 	//create easter egg
 	pow_white = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_POW);
 	pow_black = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_POW_BLACK);
-	pow_layer = bitmap_layer_create(GRect(0,0,144,168));
+	
+	#ifdef PBL_PLATFORM_CHALK
+		pow_layer = bitmap_layer_create(GRect(20,10,144,168));
+	#else 
+		pow_layer = bitmap_layer_create(GRect(0,0,144,168));
+	#endif
+	
 	bitmap_layer_set_bitmap(pow_layer, pow_white);
 	layer_add_child(window_get_root_layer(my_window), bitmap_layer_get_layer(pow_layer));
 	layer_set_hidden(bitmap_layer_get_layer(pow_layer), true);
        
-        //create battery meter
-    battery_layer = text_layer_create(GRect(0, 0, 140, 34));
+    //create battery meter
+	#ifdef PBL_PLATFORM_CHALK
+   		battery_layer = text_layer_create(GRect(25, 5, 140, 34));
+	    text_layer_set_text_alignment(battery_layer, GTextAlignmentCenter);
+	#else
+	   	battery_layer = text_layer_create(GRect(0, 0, 140, 34));
+	    text_layer_set_text_alignment(battery_layer, GTextAlignmentRight);
+	#endif
+	
     text_layer_set_text_color(battery_layer, GColorBlack);
     text_layer_set_background_color(battery_layer, GColorClear);
     text_layer_set_font(battery_layer, fonts_get_system_font(FONT_KEY_GOTHIC_14));
-    text_layer_set_text_alignment(battery_layer, GTextAlignmentRight);
     text_layer_set_text(battery_layer, "100%");
     layer_add_child(window_get_root_layer(my_window), text_layer_get_layer(battery_layer));
     layer_set_hidden(text_layer_get_layer(battery_layer), true);

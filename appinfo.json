@@ -15,22 +15,26 @@
                 "type": "png"
             },
             {
-                "file": "images/pow.png",
-                "name": "IMAGE_POW",
+                "file": "images/pow_black.png",
+                "name": "IMAGE_POW_BLACK",
                 "type": "png"
             },
             {
-                "file": "images/pow_black.png",
-                "name": "IMAGE_POW_BLACK",
+                "file": "images/pow.png",
+                "name": "IMAGE_POW",
                 "type": "png"
             }
         ]
     },
-    "sdkVersion": "2",
+    "sdkVersion": "3",
     "shortName": "Pebble Torch",
+    "targetPlatforms": [
+        "aplite",
+        "basalt",
+        "chalk"
+    ],
     "uuid": "3ac97e09-2035-4003-85fb-b4d4f176248b",
-    "versionCode": 1,
-    "versionLabel": "1.2.1",
+    "versionLabel": "1.3",
     "watchapp": {
         "watchface": false
     }
